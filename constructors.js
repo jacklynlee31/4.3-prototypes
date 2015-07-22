@@ -82,12 +82,14 @@ console.assert(new Dog().says === 'life is ruff', 'all Dogs should have a method
 // -- ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ - Your Answer - ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ -- //
 
 function Cat() {
-	//stuff
 }
 
-this.growl = function () {
-	return this.growl;
+Cat.prototype.growl = function () {
+	return 'meow';
 };
+
+var cat = new Cat();
+
 
 // -- ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ -- //
 
@@ -110,7 +112,11 @@ console.assert(cat.growl() === 'meow', 'all cats should have a method `growl` th
 
 // -- ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ - Your Answer - ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ -- //
 
-
+function KeepSecret (secret) {
+	this.squeal = function() {
+		return secret;
+	};
+}
 
 // -- ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ -- //
 
@@ -130,7 +136,7 @@ console.assert(dontTellNobody.squeal() === mySecret, 'Tell a secret when you `sq
 
 // Create a constructor called `Key`. Create another constructor
 // called `Safe`. Make the Safe constructor take 2 arguments. The
-// first argument can be any piece if data to keep safe. This must
+// first argument can be any piece of data to keep safe. This must
 // be stored using a private variable like you did with KeepSecret.
 // The 2nd param to the `Safe` constructor needs to be an instance
 // of `Key` you need to store it privately as well. Add a function
@@ -140,7 +146,17 @@ console.assert(dontTellNobody.squeal() === mySecret, 'Tell a secret when you `sq
 
 // -- ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ - Your Answer - ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ -- //
 
+function Key() {
+	//stuff here
+}
 
+function Safe(data, key) {
+	this.unlock = function(testkey) {
+		if (testkey == key) {
+		return data;
+		}
+	};
+}
 
 // -- ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ -- //
 
@@ -151,8 +167,8 @@ var rightKey  = new Key();
 var wrongKey  = new Key();
 var safe      = new Safe(sensitive, rightKey);
 
-console.assert(safe.unlock(wrongKey) !== sensitive, 'invalid keys shouldn\'t open the safe');
 console.assert(safe.unlock(rightKey) === sensitive, 'valid keys should open the safe');
+console.assert(safe.unlock(wrongKey) !== sensitive, 'invalid keys shouldn\'t open the safe');
 
 // --------------------------------------------------------------- //
 
@@ -176,7 +192,15 @@ console.assert(safe.unlock(rightKey) === sensitive, 'valid keys should open the 
 
 // -- ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ - Your Answer - ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ -- //
 
+function Validator () {
 
+}
+
+Validator.prototype.email = function(testEmail) {
+	if (testEmail == valid) {
+		return true;
+	}
+};
 
 // -- ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ -- //
 
